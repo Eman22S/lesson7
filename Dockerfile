@@ -5,7 +5,8 @@ FROM openjdk:23-jdk-slim
 WORKDIR /app
 
 # Copy the jar file from the build output
-COPY build/libs/*.jar app.jar
+COPY /build/libs/*.jar app.jar
+EXPOSE 8080
 
 # Run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "app.jar"]

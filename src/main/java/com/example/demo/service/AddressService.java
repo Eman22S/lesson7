@@ -10,4 +10,6 @@ public interface AddressService {
     Address getAddressById(Long id);
     List<Address> getAllAddresses();
     void deleteAddress(Long id);
+    List<Address> getAllAddressesSortedByCity();
+
 }

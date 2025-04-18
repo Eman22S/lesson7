@@ -5,6 +5,7 @@ import com.example.demo.model.Address;
 import com.example.demo.repository.AddressRepository;
 import com.example.demo.service.AddressService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,4 +35,10 @@ public class AddressServiceImpl implements AddressService {
     public void deleteAddress(Long id) {
         addressRepository.deleteById(id);
     }
+    @Override
+    public List<Address> getAllAddressesSortedByCity() {
+        return addressRepository.findAll(Sort.by(Sort.Direction.ASC, "city"));
+    }
+
+
 }

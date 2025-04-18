@@ -10,4 +10,8 @@ public interface PatientService {
     Patient getPatientById(String id);
     Patient createPatient(Patient patient);
     void deletePatient(String id);
+    List<Patient> searchPatients(String searchString);
+    List<Patient> getAllPatientsSortedByLastName();
+
+
 }

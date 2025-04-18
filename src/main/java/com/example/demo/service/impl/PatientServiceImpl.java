@@ -34,4 +34,20 @@ public class PatientServiceImpl implements PatientService {
     public void deletePatient(String id) {
         patientRepository.deleteById(id);
     }
+    @Override
+    public List<Patient> searchPatients(String searchString) {
+        return patientRepository.findByFullNameContainingIgnoreCase(searchString);
+    }
+    @Override
+    public List<Patient> getAllPatientsSortedByLastName() {
+        return patientRepository.findAll().stream()
+                .sorted((p1, p2) -> {
+                    String lastName1 = p1.getFullName().trim().substring(p1.getFullName().lastIndexOf(" ") + 1).toLowerCase();
+                    String lastName2 = p2.getFullName().trim().substring(p2.getFullName().lastIndexOf(" ") + 1).toLowerCase();
+                    return lastName1.compareTo(lastName2);
+                })
+                .toList();
+    }
+
+
 }

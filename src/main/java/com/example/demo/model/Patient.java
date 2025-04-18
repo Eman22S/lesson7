@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,5 +16,10 @@ public class Patient {
     private String fullName;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @ToString.Exclude  // 🔥 prevent infinite loop
+
+    @JsonManagedReference
     private Address address;
+
 }
